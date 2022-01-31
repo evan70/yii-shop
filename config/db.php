@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'sqlite:@app/runtime/sqlite3.db',
+    'dsn' => 'sqlite:@app/runtime/sqlite3.db', //app alias
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',
