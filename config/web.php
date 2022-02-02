@@ -15,6 +15,11 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+    ],
     'components' => [
         'assetManager' => [
             'bundles' => [
@@ -49,8 +54,8 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.ukr.net',
-                'username' => 'yii2_loc@ukr.net',
+                'host' => 'smtp.resp.sk',
+                'username' => 'evan@resp.sk',
                 'password' => 'password',
                 'port' => '2525', // 465
                 'encryption' => 'ssl', // tls
