@@ -18,9 +18,14 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'layout' => 'admin',
+            'defaultRoute' => 'main/index',
         ],
     ],
     'components' => [
+        'formatter' => [
+            'datetimeFormat' => 'php:d F Y H:i:s',
+        ],
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
@@ -42,6 +47,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => '/admin/auth/login',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -54,8 +60,8 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.resp.sk',
-                'username' => 'evan@resp.sk',
+                'host' => 'smtp.ukr.net',
+                'username' => 'yii2_loc@ukr.net',
                 'password' => 'password',
                 'port' => '2525', // 465
                 'encryption' => 'ssl', // tls
