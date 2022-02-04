@@ -2,18 +2,17 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\OrderProduct;
 use Yii;
-use app\modules\admin\models\Order;
-use yii\data\ActiveDataProvider;
+use app\modules\admin\models\Category;
+use app\modules\admin\models\CategorySearch;
 use app\modules\admin\controllers\AppAdminController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrderController implements the CRUD actions for Order model.
+ * CategoryController implements the CRUD actions for Category model.
  */
-class OrderController extends AppAdminController
+class CategoryController extends AppAdminController
 {
     /**
      * {@inheritdoc}
@@ -31,30 +30,22 @@ class OrderController extends AppAdminController
     }
 
     /**
-     * Lists all Order models.
+     * Lists all Category models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Order::find(),
-            /*'pagination' => [
-                'pageSize' => 2,
-            ],*/
-            'sort' => [
-                'defaultOrder' => [
-                    'status' => SORT_ASC,
-                ]
-            ]
-        ]);
+        $searchModel = new CategorySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Order model.
+     * Displays a single Category model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -67,13 +58,13 @@ class OrderController extends AppAdminController
     }
 
     /**
-     * Creates a new Order model.
+     * Creates a new Category model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Order();
+        $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -85,7 +76,7 @@ class OrderController extends AppAdminController
     }
 
     /**
-     * Updates an existing Order model.
+     * Updates an existing Category model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +87,6 @@ class OrderController extends AppAdminController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Заказ обновлен');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -106,7 +96,7 @@ class OrderController extends AppAdminController
     }
 
     /**
-     * Deletes an existing Order model.
+     * Deletes an existing Category model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -114,23 +104,21 @@ class OrderController extends AppAdminController
      */
     public function actionDelete($id)
     {
-        //$this->findModel($id)->unlinkAll('orderProduct', true);
         $this->findModel($id)->delete();
-        OrderProduct::deleteAll(['order_id' => $id]);
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Order model based on its primary key value.
+     * Finds the Category model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Order the loaded model
+     * @return Category the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (($model = Category::findOne($id)) !== null) {
             return $model;
         }
 
