@@ -47,7 +47,7 @@ class Order extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
                 ],
                 // если вместо метки времени UNIX используется datetime:
-                'value' => new Expression('datetime()'),
+                'value' => new Expression('NOW()'),
             ],
         ];
     }
