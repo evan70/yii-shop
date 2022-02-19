@@ -2,7 +2,7 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2_loc',
+    'dsn' => 'sqlite:@app/runtime/sqlite3.db', //app alias
     'username' => 'root',
     'password' => '',
     'charset' => 'utf8',

@@ -28,11 +28,6 @@ class Product extends \yii\db\ActiveRecord
         return 'product';
     }
 
-    public function getCategory()
-    {
-        return $this->hasOne(Category::class, ['id' => 'category_id']);
-    }
-
     /**
      * {@inheritdoc}
      */
